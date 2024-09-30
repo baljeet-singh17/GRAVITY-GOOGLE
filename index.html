@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Clone with Gravity</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        .logo {
+            width: 272px;
+            margin-bottom: 20px;
+        }
+
+        .search-bar {
+            width: 400px;
+            height: 40px;
+            padding: 10px;
+            border: 1px solid #dcdcdc;
+            border-radius: 24px;
+            font-size: 16px;
+            transition: transform 0.1s;
+        }
+
+        .buttons {
+            margin-top: 20px;
+        }
+
+        .btn {
+            background-color: #f8f9fa;
+            border: 1px solid #dcdcdc;
+            border-radius: 24px;
+            padding: 10px 20px;
+            font-size: 14px;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #e8e8e8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" alt="Google Logo" class="logo">
+        <input type="text" class="search-bar" placeholder="Search Google or type a URL">
+        <div class="buttons">
+            <button class="btn">Google Search</button>
+            <button class="btn">I'm Feeling Lucky</button>
+        </div>
+    </div>
+    <script>
+        const searchBar = document.querySelector('.search-bar');
+
+        document.addEventListener('mousemove', (event) => {
+            const x = event.clientX;
+            const y = event.clientY;
+            const searchBarRect = searchBar.getBoundingClientRect();
+            const searchBarX = searchBarRect.left + searchBarRect.width / 2;
+            const searchBarY = searchBarRect.top + searchBarRect.height / 2;
+            const dx = x - searchBarX;
+            const dy = y - searchBarY;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            const force = Math.min(10, distance / 20);
+            searchBar.style.transform = `translate(${dx / force}px, ${dy / force}px)`;
+        });
+    </script>
+</body>
+</html>
